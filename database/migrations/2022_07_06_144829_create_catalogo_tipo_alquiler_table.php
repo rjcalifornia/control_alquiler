@@ -14,7 +14,7 @@ class CreateCatalogoTipoAlquilerTable extends Migration
     public function up()
     {
         Schema::create('catalogo_tipo_alquiler', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->timestamps();
         });
     }

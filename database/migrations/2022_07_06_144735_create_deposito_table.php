@@ -14,7 +14,14 @@ class CreateDepositoTable extends Migration
     public function up()
     {
         Schema::create('deposito', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->float('cantidad', 8, 2);
+            $table->unsignedBigInteger('contrato_id');
+            $table->unsignedInteger('estado');
+            $table->unsignedBigInteger('usuario_crea');
+            $table->unsignedBigInteger('usuario_modifica')->nullable();
+            $table->foreign('usuario_crea')->references('id')->on('users');
+            $table->foreign('usuario_modifica')->references('id')->on('users');
             $table->timestamps();
         });
     }

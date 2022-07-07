@@ -14,7 +14,16 @@ class CreateInquilinosTable extends Migration
     public function up()
     {
         Schema::create('inquilinos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('nombres');
+            $table->string('apellidos');
+            $table->string('numero_dui');
+            $table->string('numero_contacto');
+            $table->string('email');
+            $table->unsignedBigInteger('usuario_crea');
+            $table->unsignedBigInteger('usuario_modifica')->nullable();
+            $table->foreign('usuario_crea')->references('id')->on('users');
+            $table->foreign('usuario_modifica')->references('id')->on('users');
             $table->timestamps();
         });
     }

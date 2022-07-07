@@ -14,7 +14,26 @@ class CreateInmuebleTable extends Migration
     public function up()
     {
         Schema::create('inmueble', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('ubicacion');
+            $table->integer('cuartos');
+            $table->integer('camas');
+            $table->integer('banos');
+            $table->boolean('tiene_aire_acondicionado')->nullable();
+            $table->boolean('tiene_cocina')->nullable();
+            $table->boolean('tiene_comedor')->nullable();
+            $table->boolean('tiene_lavatrastos')->nullable();
+            $table->boolean('tiene_refrigeradora')->nullable();
+            $table->boolean('tiene_televisor')->nullable();
+            $table->boolean('tiene_muebles_sala')->nullable();
+            $table->boolean('tiene_cochera')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedInteger('estado');
+            $table->unsignedBigInteger('usuario_crea');
+            $table->unsignedBigInteger('usuario_modifica')->nullable();
+            $table->foreign('usuario_crea')->references('id')->on('users');
+            $table->foreign('usuario_modifica')->references('id')->on('users');
             $table->timestamps();
         });
     }
