@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LeaseController;
+use App\Http\Controllers\AccommodationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,9 @@ Route::prefix('/v1/security')->group(function () {
 
 Route::prefix('/v1/app')->group(function () {
 
-    Route::get('/dashboard', [LeaseController::class, 'dashboardView'])
+    Route::get('/dashboard', [AccommodationController::class, 'dashboardView'])
+        ->name('dashboard');
+
+    Route::get('/create-accommodation', [AccommodationController::class, 'createView'])
         ->name('dashboard');
 });
