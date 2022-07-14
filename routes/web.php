@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AccommodationController;
+use App\Http\Controllers\AccommodationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +26,16 @@ Route::prefix('/v1/security')->group(function () {
 
     Route::post('/login', [AuthController::class, 'authenticate'])
     ->name('authenticate-user');
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 
 Route::prefix('/v1/app')->group(function () {
 
-    Route::get('/dashboard', [AccommodationController::class, 'dashboardView'])
+    Route::get('/dashboard', [AccommodationsController::class, 'dashboardView'])
         ->name('dashboard');
 
-    Route::get('/create-accommodation', [AccommodationController::class, 'createView'])
-        ->name('dashboard');
+    Route::get('/accommodation/create-new', [AccommodationsController::class, 'createAccomodationView'])
+        ->name('create-new-accomodation');
 });
